@@ -4,6 +4,9 @@ import Foundation
 
 // MARK: - Configuration
 
+// Global variable for root directory
+var rootDir = "."
+
 struct IconTarget {
     let size: Int
     let path: String
@@ -25,75 +28,80 @@ struct IconTarget {
 }
 
 // Android Targets - расширенный список иконок для Android
-let androidTargets: [IconTarget] = [
-    // Standard launcher icons
-    IconTarget(size: 48, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher.png", idiom: nil, scale: nil),
-    IconTarget(size: 72, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher.png", idiom: nil, scale: nil),
-    IconTarget(size: 96, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png", idiom: nil, scale: nil),
-    IconTarget(size: 144, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png", idiom: nil, scale: nil),
-    IconTarget(size: 192, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png", idiom: nil, scale: nil),
-    
-    // Round launcher icons
-    IconTarget(size: 48, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png", idiom: nil, scale: nil),
-    IconTarget(size: 72, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png", idiom: nil, scale: nil),
-    IconTarget(size: 96, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
-    IconTarget(size: 144, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
-    IconTarget(size: 192, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
-    
-    // Adaptive icon background and foreground (Android 8+)
-    IconTarget(size: 108, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
-    IconTarget(size: 162, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
-    IconTarget(size: 216, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
-    IconTarget(size: 324, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
-    IconTarget(size: 432, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
-    
-    // Play Store icon
-    IconTarget(size: 512, path: "android/app/src/main/play_store_512.png", idiom: nil, scale: nil),
-]
+var androidTargets: [IconTarget] {
+    return [
+        // Standard launcher icons
+        IconTarget(size: 48, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher.png", idiom: nil, scale: nil),
+        IconTarget(size: 72, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher.png", idiom: nil, scale: nil),
+        IconTarget(size: 96, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png", idiom: nil, scale: nil),
+        IconTarget(size: 144, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png", idiom: nil, scale: nil),
+        IconTarget(size: 192, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png", idiom: nil, scale: nil),
+        
+        // Round launcher icons
+        IconTarget(size: 48, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png", idiom: nil, scale: nil),
+        IconTarget(size: 72, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png", idiom: nil, scale: nil),
+        IconTarget(size: 96, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
+        IconTarget(size: 144, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
+        IconTarget(size: 192, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png", idiom: nil, scale: nil),
+        
+        // Adaptive icon background and foreground (Android 8+)
+        IconTarget(size: 108, path: "android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
+        IconTarget(size: 162, path: "android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
+        IconTarget(size: 216, path: "android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
+        IconTarget(size: 324, path: "android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
+        IconTarget(size: 432, path: "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png", idiom: nil, scale: nil),
+        
+        // Play Store icon
+        IconTarget(size: 512, path: "android/app/src/main/play_store_512.png", idiom: nil, scale: nil),
+    ].map { IconTarget(size: $0.size, path: "\(rootDir)/\($0.path)", idiom: $0.idiom, scale: $0.scale, role: $0.role, subtype: $0.subtype) }
+}
 
 // MARK: - iOS Targets
-let iosAssetCatalogPath = "ios/Runner/Assets.xcassets/AppIcon.appiconset"
-let iosTargets: [IconTarget] = [
-    // iPhone Notification
-    IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-20x20@2x.png", idiom: "iphone", scale: "2x"),
-    IconTarget(size: 60, path: "\(iosAssetCatalogPath)/Icon-App-20x20@3x.png", idiom: "iphone", scale: "3x"),
-    // iPhone Settings
-    IconTarget(size: 58, path: "\(iosAssetCatalogPath)/Icon-App-29x29@2x.png", idiom: "iphone", scale: "2x"),
-    IconTarget(size: 87, path: "\(iosAssetCatalogPath)/Icon-App-29x29@3x.png", idiom: "iphone", scale: "3x"),
-    // iPhone Spotlight
-    IconTarget(size: 80, path: "\(iosAssetCatalogPath)/Icon-App-40x40@2x.png", idiom: "iphone", scale: "2x"),
-    IconTarget(size: 120, path: "\(iosAssetCatalogPath)/Icon-App-40x40@3x.png", idiom: "iphone", scale: "3x"),
-    // iPhone App Icon
-    IconTarget(size: 120, path: "\(iosAssetCatalogPath)/Icon-App-60x60@2x.png", idiom: "iphone", scale: "2x"),
-    IconTarget(size: 180, path: "\(iosAssetCatalogPath)/Icon-App-60x60@3x.png", idiom: "iphone", scale: "3x"),
-    // iPad Notifications
-    IconTarget(size: 20, path: "\(iosAssetCatalogPath)/Icon-App-20x20@1x.png", idiom: "ipad", scale: "1x"),
-    IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-20x20@2x-1.png", idiom: "ipad", scale: "2x"),
-    // iPad Settings
-    IconTarget(size: 29, path: "\(iosAssetCatalogPath)/Icon-App-29x29@1x.png", idiom: "ipad", scale: "1x"),
-    IconTarget(size: 58, path: "\(iosAssetCatalogPath)/Icon-App-29x29@2x-1.png", idiom: "ipad", scale: "2x"),
-    // iPad Spotlight
-    IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-40x40@1x.png", idiom: "ipad", scale: "1x"),
-    IconTarget(size: 80, path: "\(iosAssetCatalogPath)/Icon-App-40x40@2x-1.png", idiom: "ipad", scale: "2x"),
-    // iPad App Icon
-    IconTarget(size: 76, path: "\(iosAssetCatalogPath)/Icon-App-76x76@1x.png", idiom: "ipad", scale: "1x"),
-    IconTarget(size: 152, path: "\(iosAssetCatalogPath)/Icon-App-76x76@2x.png", idiom: "ipad", scale: "2x"),
-    // iPad Pro App Icon
-    IconTarget(size: 167, path: "\(iosAssetCatalogPath)/Icon-App-83.5x83.5@2x.png", idiom: "ipad", scale: "2x"),
-    // App Store Icon
-    IconTarget(size: 1024, path: "\(iosAssetCatalogPath)/Icon-App-1024x1024@1x.png", idiom: "ios-marketing", scale: "1x")
-]
+var iosAssetCatalogPath: String { "\(rootDir)/ios/Runner/Assets.xcassets/AppIcon.appiconset" }
+var iosTargets: [IconTarget] {
+    return [
+        // iPhone Notification
+        IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-20x20@2x.png", idiom: "iphone", scale: "2x"),
+        IconTarget(size: 60, path: "\(iosAssetCatalogPath)/Icon-App-20x20@3x.png", idiom: "iphone", scale: "3x"),
+        // iPhone Settings
+        IconTarget(size: 58, path: "\(iosAssetCatalogPath)/Icon-App-29x29@2x.png", idiom: "iphone", scale: "2x"),
+        IconTarget(size: 87, path: "\(iosAssetCatalogPath)/Icon-App-29x29@3x.png", idiom: "iphone", scale: "3x"),
+        // iPhone Spotlight
+        IconTarget(size: 80, path: "\(iosAssetCatalogPath)/Icon-App-40x40@2x.png", idiom: "iphone", scale: "2x"),
+        IconTarget(size: 120, path: "\(iosAssetCatalogPath)/Icon-App-40x40@3x.png", idiom: "iphone", scale: "3x"),
+        // iPhone App Icon
+        IconTarget(size: 120, path: "\(iosAssetCatalogPath)/Icon-App-60x60@2x.png", idiom: "iphone", scale: "2x"),
+        IconTarget(size: 180, path: "\(iosAssetCatalogPath)/Icon-App-60x60@3x.png", idiom: "iphone", scale: "3x"),
+        // iPad Notifications
+        IconTarget(size: 20, path: "\(iosAssetCatalogPath)/Icon-App-20x20@1x.png", idiom: "ipad", scale: "1x"),
+        IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-20x20@2x-1.png", idiom: "ipad", scale: "2x"),
+        // iPad Settings
+        IconTarget(size: 29, path: "\(iosAssetCatalogPath)/Icon-App-29x29@1x.png", idiom: "ipad", scale: "1x"),
+        IconTarget(size: 58, path: "\(iosAssetCatalogPath)/Icon-App-29x29@2x-1.png", idiom: "ipad", scale: "2x"),
+        // iPad Spotlight
+        IconTarget(size: 40, path: "\(iosAssetCatalogPath)/Icon-App-40x40@1x.png", idiom: "ipad", scale: "1x"),
+        IconTarget(size: 80, path: "\(iosAssetCatalogPath)/Icon-App-40x40@2x-1.png", idiom: "ipad", scale: "2x"),
+        // iPad App Icon
+        IconTarget(size: 76, path: "\(iosAssetCatalogPath)/Icon-App-76x76@1x.png", idiom: "ipad", scale: "1x"),
+        IconTarget(size: 152, path: "\(iosAssetCatalogPath)/Icon-App-76x76@2x.png", idiom: "ipad", scale: "2x"),
+        // iPad Pro App Icon
+        IconTarget(size: 167, path: "\(iosAssetCatalogPath)/Icon-App-83.5x83.5@2x.png", idiom: "ipad", scale: "2x"),
+        // App Store Icon
+        IconTarget(size: 1024, path: "\(iosAssetCatalogPath)/Icon-App-1024x1024@1x.png", idiom: "ios-marketing", scale: "1x")
+    ]
+}
 
 // MARK: - Helper Functions
 
-/* Comment out printUsage as it's no longer needed
 func printUsage() {
     let scriptName = URL(fileURLWithPath: CommandLine.arguments[0]).lastPathComponent
-    print("Usage: swift \(scriptName) <path_to_source_icon.png>")
-    print("Example: swift \(scriptName) Assets/Icons/app_icon_source.png")
-    print("\nThe source icon should ideally be 1024x1024 pixels or larger.")
+    print("Usage: swift \(scriptName) [root_directory_path]")
+    print("Example: swift \(scriptName) .")
+    print("Example: swift \(scriptName) /path/to/your/project")
+    print("\nIf root_directory_path is omitted, the current directory will be used.")
+    print("The source icon should be placed at '[root_directory_path]/assets/app_icons/logo.png'")
+    print("The source icon should ideally be 1024x1024 pixels or larger.")
 }
-*/
 
 func runCommand(command: String, arguments: [String]) -> Bool {
     let task = Process()
@@ -211,7 +219,7 @@ func ensureDirectoriesExist() -> Bool {
 
 // Function to update Info.plist with alternative icons
 func updateInfoPlist(altIconNames: [String]) -> Bool {
-    let infoPlistPath = "ios/Runner/Info.plist"
+    let infoPlistPath = "\(rootDir)/ios/Runner/Info.plist"
     guard FileManager.default.fileExists(atPath: infoPlistPath) else {
         print("Error: Info.plist file not found at \(infoPlistPath)")
         return false
@@ -276,8 +284,8 @@ func updateInfoPlist(altIconNames: [String]) -> Bool {
 
 // Process alternative icons from assets/app_icons/alts directory
 func processAlternativeIcons() -> Bool {
-    let altsSourcePath = "assets/app_icons/alts"
-    let destinationPath = "ios/runner/App Icons"
+    let altsSourcePath = "\(rootDir)/assets/app_icons/alts"
+    let destinationPath = "\(rootDir)/ios/Runner/App Icons" // Changed 'runner' to 'Runner' for consistency
     
     // Check if source directory exists
     guard FileManager.default.fileExists(atPath: altsSourcePath) else {
@@ -365,7 +373,29 @@ func processAlternativeIcons() -> Bool {
 // MARK: - Main Script Logic
 
 // 0. Ensure source file exists
-let sourceIconPath = "assets/app_icons/logo.png" // Always use this icon
+var sourceIconPath: String { "\(rootDir)/assets/app_icons/logo.png" } // Always use this icon
+
+// Parse command line arguments
+if CommandLine.arguments.count > 1 {
+    let firstArg = CommandLine.arguments[1]
+    if firstArg == "--help" || firstArg == "-h" {
+        printUsage()
+        exit(0)
+    }
+    rootDir = firstArg
+    // Remove trailing slash if present for consistency
+    if rootDir.hasSuffix("/") {
+        rootDir = String(rootDir.dropLast())
+    }
+    if rootDir.isEmpty { // Handle case where only "/" was passed
+        rootDir = "/" 
+    } else if rootDir == "." || rootDir == "./" {
+         rootDir = "." // Normalize to "."
+    }
+}
+
+print("Using root directory: \(rootDir)")
+
 let sourceIconURL = URL(fileURLWithPath: sourceIconPath)
 
 guard FileManager.default.fileExists(atPath: sourceIconURL.path) else {
@@ -459,10 +489,10 @@ let altsSuccess = processAlternativeIcons()
 // Final Summary
 print("\n--- Summary ---")
 print("🎉 Icon generation completed. Check the results in the following directories:")
-print("   - Android: android/app/src/main/res/mipmap-*")
+print("   - Android: \(rootDir)/android/app/src/main/res/mipmap-*")
 print("   - iOS: \(iosAssetCatalogPath)")
 if altsSuccess {
-    print("   - Alternative Icons: ios/runner/App Icons")
+    print("   - Alternative Icons: \(rootDir)/ios/Runner/App Icons")
 }
 
 exit(0) 

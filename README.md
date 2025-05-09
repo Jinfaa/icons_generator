@@ -1,4 +1,3 @@
-
 # Swift Icon Generator for iOS and Android
 
 This Swift script automates the generation of application icons for both iOS and Android platforms using a single source image. It also supports the creation of alternative icons for iOS and updates the `Info.plist` file accordingly.
@@ -39,7 +38,7 @@ This Swift script automates the generation of application icons for both iOS and
 1. Place your source icon at:
 
    ```
-   assets/app_icons/logo.png
+   [root_directory]/assets/app_icons/logo.png
    ```
 
    Ensure it is at least **1024x1024** pixels for best results.
@@ -47,20 +46,29 @@ This Swift script automates the generation of application icons for both iOS and
 2. Optional: Place alternative icons (1024x1024 PNG) in:
 
    ```
-   assets/app_icons/alts/
+   [root_directory]/assets/app_icons/alts/
    ```
 
-3. Run the script:
+3. Run the script from your project's root or specify the root directory:
 
    ```bash
-   swift icon_generator.swift
+   # If running from the project root (e.g., where 'ios' and 'android' folders are)
+   swift Utilities/icons_generator/generate_app_icons.swift
+   
+   # Or specify the project root directory as an argument
+   swift Utilities/icons_generator/generate_app_icons.swift /path/to/your/project
+   
+   # Use '.' for the current directory explicitly
+   swift Utilities/icons_generator/generate_app_icons.swift .
    ```
+   The script defaults to the current directory if no path is provided.
+   You can also use `swift Utilities/icons_generator/generate_app_icons.swift --help` for usage instructions.
 
 ## Output
 
-* **Android icons**: `android/app/src/main/res/mipmap-*`
-* **iOS icons**: `ios/Runner/Assets.xcassets/AppIcon.appiconset/`
-* **Alternative icons**: `ios/Runner/App Icons/`
+* **Android icons**: `[root_directory]/android/app/src/main/res/mipmap-*`
+* **iOS icons**: `[root_directory]/ios/Runner/Assets.xcassets/AppIcon.appiconset/`
+* **Alternative icons**: `[root_directory]/ios/Runner/App Icons/`
 
 ## Notes
 
