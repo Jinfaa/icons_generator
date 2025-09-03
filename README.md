@@ -15,7 +15,7 @@ This Swift script automates the generation of application icons for both iOS and
   * Creates all required icons for iPhone, iPad, Spotlight, Settings, Notification, and App Store
   * Automatically generates `Contents.json` for use with Xcode asset catalogs
 
-* 🎨 **Alternative Icons Support**
+* 🌈 **Alternative Icons Support**
 
   * Processes PNGs from `assets/app_icons/alts/`
   * Generates 2x (120x120) and 3x (180x180) icons
@@ -27,6 +27,16 @@ This Swift script automates the generation of application icons for both iOS and
   * Logs a warning if the source image appears to be smaller than recommended
   * Creates necessary directories before saving output
   * Uses `sips` for high-quality resizing
+
+## Flutter Integration
+
+This script is particularly useful in **Flutter projects**, because it:
+
+* 📦 Generates icons for **both iOS and Android** from a single source file
+* 🔄 Updates `Info.plist` and creates the required assets in `ios/Runner/Assets.xcassets/` for iOS
+* 🗂 Saves Android icons in `android/app/src/main/res/mipmap-*` with adaptive icon support
+* 🌈 Supports **alternative iOS icons**, allowing a Flutter app to dynamically switch icons via platform channels
+* 🚀 Eliminates the need for third-party packages like `flutter_launcher_icons` — everything is automated and handled natively
 
 ## Requirements
 
@@ -54,13 +64,14 @@ This Swift script automates the generation of application icons for both iOS and
    ```bash
    # If running from the project root (e.g., where 'ios' and 'android' folders are)
    swift Utilities/icons_generator/generate_app_icons.swift
-   
+
    # Or specify the project root directory as an argument
    swift Utilities/icons_generator/generate_app_icons.swift /path/to/your/project
-   
+
    # Use '.' for the current directory explicitly
    swift Utilities/icons_generator/generate_app_icons.swift .
    ```
+
    The script defaults to the current directory if no path is provided.
    You can also use `swift Utilities/icons_generator/generate_app_icons.swift --help` for usage instructions.
 
